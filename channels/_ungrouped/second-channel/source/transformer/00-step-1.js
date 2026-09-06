@@ -1,0 +1,1 @@
+logger.info("This is message" + msg.key)
