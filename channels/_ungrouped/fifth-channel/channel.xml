@@ -9,6 +9,7 @@
     <name>sourceConnector</name>
     <properties class="com.mirth.connect.connectors.js.JavaScriptReceiverProperties" version="4.5.2">
       <pluginProperties/>
+      
       <pollConnectorProperties version="4.5.2">
         <pollingType>INTERVAL</pollingType>
         <pollOnStart>false</pollOnStart>
