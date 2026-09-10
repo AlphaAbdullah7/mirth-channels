@@ -148,6 +148,7 @@
           </batchProperties>
         </outboundProperties>
       </responseTransformer>
+      
       <filter version="4.5.2">
         <elements/>
       </filter>
