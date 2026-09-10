@@ -160,7 +160,7 @@
         <driver>org.postgresql.Driver</driver>
         <url>postgresql://demo_user:demo_pass@db.example.invalid:5432/demo_d</url>
         <username>testdb</username>
-        <password>testdb</password>
+        <password>${test_channel_destination_1_password}</password>
         <query>/* @import destinations/1-destination-1/query.sql */</query>
         <useScript>false</useScript>
       </properties>
