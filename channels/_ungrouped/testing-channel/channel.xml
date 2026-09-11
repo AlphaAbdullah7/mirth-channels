@@ -3,7 +3,7 @@
   <nextMetaDataId>2</nextMetaDataId>
   <name>Testing Channel</name>
   <description></description>
-  <revision>4</revision>
+  <revision>5</revision>
   <sourceConnector version="4.5.2">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -388,7 +388,7 @@ return;</undeployScript>
     <metadata>
       <enabled>false</enabled>
       <lastModified>
-        <time>1788866469180</time>
+        <time>1789142480319</time>
         <timezone>Asia/Karachi</timezone>
       </lastModified>
       <pruningSettings>
