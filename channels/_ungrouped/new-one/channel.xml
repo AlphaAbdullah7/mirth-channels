@@ -1,46 +1,23 @@
 <channel version="4.5.2">
-  <id>4c1cf0fd-eb59-44c4-bbaf-37bbd27e4f59</id>
+  <id>5a5d20dc-aafc-4cea-8fee-cf16f628c2cb</id>
   <nextMetaDataId>2</nextMetaDataId>
-  <name>Testing Channel</name>
+  <name>New one</name>
   <description></description>
-  <revision>7</revision>
+  <revision>2</revision>
   <sourceConnector version="4.5.2">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
-    <properties class="com.mirth.connect.connectors.jdbc.DatabaseReceiverProperties" version="4.5.2">
+    <properties class="com.mirth.connect.connectors.tcp.TcpReceiverProperties" version="4.5.2">
       <pluginProperties/>
-      <pollConnectorProperties version="4.5.2">
-        <pollingType>INTERVAL</pollingType>
-        <pollOnStart>false</pollOnStart>
-        <pollingFrequency>5000</pollingFrequency>
-        <pollingHour>0</pollingHour>
-        <pollingMinute>0</pollingMinute>
-        <cronJobs/>
-        <pollConnectorPropertiesAdvanced>
-          <weekly>true</weekly>
-          <inactiveDays>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-          </inactiveDays>
-          <dayOfMonth>1</dayOfMonth>
-          <allDay>true</allDay>
-          <startingHour>8</startingHour>
-          <startingMinute>0</startingMinute>
-          <endingHour>17</endingHour>
-          <endingMinute>0</endingMinute>
-        </pollConnectorPropertiesAdvanced>
-      </pollConnectorProperties>
+      <listenerConnectorProperties version="4.5.2">
+        <host>0.0.0.0</host>
+        <port>6661</port>
+      </listenerConnectorProperties>
       <sourceConnectorProperties version="4.5.2">
-        <responseVariable>None</responseVariable>
+        <responseVariable>Auto-generate (After source transformer)</responseVariable>
         <respondAfterProcessing>true</respondAfterProcessing>
         <processBatch>false</processBatch>
-        <firstResponse>false</firstResponse>
+        <firstResponse>true</firstResponse>
         <processingThreads>1</processingThreads>
         <resourceIds class="linked-hash-map">
           <entry>
@@ -50,38 +27,72 @@
         </resourceIds>
         <queueBufferSize>1000</queueBufferSize>
       </sourceConnectorProperties>
-      <driver>org.postgresql.Driver</driver>
-      <url>postgresql://demo_user:demo_pass@db.example.invalid:5432/demo_db</url>
-      <username>testdb</username>
-      <password>123</password>
-      <select>/* @import source/select.sql */</select>
-      <update></update>
-      <useScript>false</useScript>
-      <aggregateResults>false</aggregateResults>
-      <cacheResults>true</cacheResults>
+      <transmissionModeProperties class="com.mirth.connect.plugins.mllpmode.MLLPModeProperties">
+        <pluginPointName>MLLP</pluginPointName>
+        <startOfMessageBytes>0B</startOfMessageBytes>
+        <endOfMessageBytes>1C0D</endOfMessageBytes>
+        <useMLLPv2>false</useMLLPv2>
+        <ackBytes>06</ackBytes>
+        <nackBytes>15</nackBytes>
+        <maxRetries>2</maxRetries>
+      </transmissionModeProperties>
+      <serverMode>true</serverMode>
+      <remoteAddress></remoteAddress>
+      <remotePort></remotePort>
+      <overrideLocalBinding>false</overrideLocalBinding>
+      <reconnectInterval>5000</reconnectInterval>
+      <receiveTimeout>0</receiveTimeout>
+      <bufferSize>65536</bufferSize>
+      <maxConnections>10</maxConnections>
       <keepConnectionOpen>true</keepConnectionOpen>
-      <updateMode>1</updateMode>
-      <retryCount>3</retryCount>
-      <retryInterval>10000</retryInterval>
-      <fetchSize>1000</fetchSize>
-      <encoding>DEFAULT_ENCODING</encoding>
+      <dataTypeBinary>false</dataTypeBinary>
+      <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
+      <respondOnNewConnection>0</respondOnNewConnection>
+      <responseAddress></responseAddress>
+      <responsePort></responsePort>
     </properties>
     <transformer version="4.5.2">
       <elements/>
-      <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8cmVzdWx0Lz4NCg==</inboundTemplate>
-      <inboundDataType>XML</inboundDataType>
+      <inboundDataType>HL7V2</inboundDataType>
       <outboundDataType>HL7V2</outboundDataType>
-      <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="4.5.2">
-        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="4.5.2">
+      <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="4.5.2">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="4.5.2">
+          <handleRepetitions>true</handleRepetitions>
+          <handleSubcomponents>true</handleSubcomponents>
+          <useStrictParser>false</useStrictParser>
+          <useStrictValidation>false</useStrictValidation>
           <stripNamespaces>false</stripNamespaces>
+          <segmentDelimiter>\r</segmentDelimiter>
+          <convertLineBreaks>true</convertLineBreaks>
         </serializationProperties>
-        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="4.5.2">
-          <splitType>Element_Name</splitType>
-          <elementName></elementName>
-          <level>1</level>
-          <query></query>
+        <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="4.5.2">
+          <useStrictParser>false</useStrictParser>
+          <useStrictValidation>false</useStrictValidation>
+          <segmentDelimiter>\r</segmentDelimiter>
+        </deserializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="4.5.2">
+          <splitType>MSH_Segment</splitType>
           <batchScript></batchScript>
         </batchProperties>
+        <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="4.5.2">
+          <segmentDelimiter>\r</segmentDelimiter>
+          <successfulACKCode>AA</successfulACKCode>
+          <successfulACKMessage></successfulACKMessage>
+          <errorACKCode>AE</errorACKCode>
+          <errorACKMessage>An Error Occurred Processing Message.</errorACKMessage>
+          <rejectedACKCode>AR</rejectedACKCode>
+          <rejectedACKMessage>Message Rejected.</rejectedACKMessage>
+          <msh15ACKAccept>false</msh15ACKAccept>
+          <dateFormat>yyyyMMddHHmmss.SSS</dateFormat>
+        </responseGenerationProperties>
+        <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="4.5.2">
+          <successfulACKCode>AA,CA</successfulACKCode>
+          <errorACKCode>AE,CE</errorACKCode>
+          <rejectedACKCode>AR,CR</rejectedACKCode>
+          <validateMessageControlId>true</validateMessageControlId>
+          <originalMessageControlId>Destination_Encoded</originalMessageControlId>
+          <originalIdMapVariable></originalIdMapVariable>
+        </responseValidationProperties>
       </inboundProperties>
       <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="4.5.2">
         <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="4.5.2">
@@ -126,7 +137,7 @@
     <filter version="4.5.2">
       <elements/>
     </filter>
-    <transportName>Database Reader</transportName>
+    <transportName>TCP Listener</transportName>
     <mode>SOURCE</mode>
     <enabled>true</enabled>
     <waitForPrevious>true</waitForPrevious>
@@ -134,7 +145,7 @@
   <destinationConnectors>
     <connector version="4.5.2">
       <metaDataId>1</metaDataId>
-      <name>Destination 1</name>
+      <name>Database Writer</name>
       <properties class="com.mirth.connect.connectors.jdbc.DatabaseDispatcherProperties" version="4.5.2">
         <pluginProperties/>
         <destinationConnectorProperties version="4.5.2">
@@ -158,10 +169,10 @@
           <reattachAttachments>true</reattachAttachments>
         </destinationConnectorProperties>
         <driver>org.postgresql.Driver</driver>
-        <url>postgresql://demo_user:demo_pass@db.example.invalid:5432/demo_db</url>
-        <username>testdb</username>
-        <password>123</password>
-        <query>/* @import destinations/1-destination-1/query.sql */</query>
+        <url>ht</url>
+        <username></username>
+        <password>${new_one_database_writer_password}</password>
+        <query>/* @import destinations/1-database-writer/query.sql */</query>
         <useScript>false</useScript>
       </properties>
       <transformer version="4.5.2">
@@ -386,16 +397,11 @@ return;</undeployScript>
   </properties>
   <exportData>
     <metadata>
-      <enabled>false</enabled>
-      <lastModified>
-        <time>1789142480319</time>
-        <timezone>Asia/Karachi</timezone>
-      </lastModified>
+      <enabled>true</enabled>
       <pruningSettings>
         <archiveEnabled>true</archiveEnabled>
         <pruneErroredMessages>false</pruneErroredMessages>
       </pruningSettings>
-      <userId>1</userId>
     </metadata>
     <dependentIds/>
     <dependencyIds/>

@@ -1,0 +1,47 @@
+<channelGroup version="4.5.2">
+  <id>c6aaee85-bce5-4281-8f78-d03113f305ec</id>
+  <name>Radiology</name>
+  <revision>1</revision>
+  <description></description>
+  <channels>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-000000000003</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-00000000000a</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-000000000011</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-000000000020</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-000000000027</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-00000000002e</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-000000000035</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-000000000044</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-00000000004b</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-000000000052</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-000000000059</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>64789fb3-47c9-4f9a-942a-20128eb415bb</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>cfd6b84d-0be9-47e1-8228-b51d5c80671b</id>
+    </channel>
+  </channels>
+</channelGroup>

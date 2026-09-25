@@ -1,41 +1,14 @@
 <channel version="4.5.2">
-  <id>4c1cf0fd-eb59-44c4-bbaf-37bbd27e4f59</id>
+  <id>64789fb3-47c9-4f9a-942a-20128eb415bb</id>
   <nextMetaDataId>2</nextMetaDataId>
-  <name>Testing Channel</name>
-  <description></description>
-  <revision>7</revision>
+  <name>New 2</name>
+  <description>MDM inbound interface for eCW at NORTH. Seeded load-test channel 88.</description>
+  <revision>1</revision>
   <sourceConnector version="4.5.2">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
-    <properties class="com.mirth.connect.connectors.jdbc.DatabaseReceiverProperties" version="4.5.2">
+    <properties class="com.mirth.connect.connectors.vm.VmReceiverProperties" version="4.5.2">
       <pluginProperties/>
-      <pollConnectorProperties version="4.5.2">
-        <pollingType>INTERVAL</pollingType>
-        <pollOnStart>false</pollOnStart>
-        <pollingFrequency>5000</pollingFrequency>
-        <pollingHour>0</pollingHour>
-        <pollingMinute>0</pollingMinute>
-        <cronJobs/>
-        <pollConnectorPropertiesAdvanced>
-          <weekly>true</weekly>
-          <inactiveDays>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-            <boolean>false</boolean>
-          </inactiveDays>
-          <dayOfMonth>1</dayOfMonth>
-          <allDay>true</allDay>
-          <startingHour>8</startingHour>
-          <startingMinute>0</startingMinute>
-          <endingHour>17</endingHour>
-          <endingMinute>0</endingMinute>
-        </pollConnectorPropertiesAdvanced>
-      </pollConnectorProperties>
       <sourceConnectorProperties version="4.5.2">
         <responseVariable>None</responseVariable>
         <respondAfterProcessing>true</respondAfterProcessing>
@@ -50,38 +23,72 @@
         </resourceIds>
         <queueBufferSize>1000</queueBufferSize>
       </sourceConnectorProperties>
-      <driver>org.postgresql.Driver</driver>
-      <url>postgresql://demo_user:demo_pass@db.example.invalid:5432/demo_db</url>
-      <username>testdb</username>
-      <password>123</password>
-      <select>/* @import source/select.sql */</select>
-      <update></update>
-      <useScript>false</useScript>
-      <aggregateResults>false</aggregateResults>
-      <cacheResults>true</cacheResults>
-      <keepConnectionOpen>true</keepConnectionOpen>
-      <updateMode>1</updateMode>
-      <retryCount>3</retryCount>
-      <retryInterval>10000</retryInterval>
-      <fetchSize>1000</fetchSize>
-      <encoding>DEFAULT_ENCODING</encoding>
     </properties>
     <transformer version="4.5.2">
-      <elements/>
-      <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8cmVzdWx0Lz4NCg==</inboundTemplate>
-      <inboundDataType>XML</inboundDataType>
+      <elements>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep version="4.5.2">
+          <name>Normalise MDM 1</name>
+          <sequenceNumber>0</sequenceNumber>
+          <enabled>true</enabled>
+          <script>/* @import source/transformer/00-normalise-mdm-1.js */</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep version="4.5.2">
+          <name>Normalise MDM 2</name>
+          <sequenceNumber>1</sequenceNumber>
+          <enabled>true</enabled>
+          <script>/* @import source/transformer/01-normalise-mdm-2.js */</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.2">
+          <name>field_3</name>
+          <sequenceNumber>2</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>field_3</variable>
+          <mapping>msg[&apos;PID&apos;][&apos;PID.3&apos;][&apos;PID.3.1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+      </elements>
+      <inboundDataType>HL7V2</inboundDataType>
       <outboundDataType>HL7V2</outboundDataType>
-      <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="4.5.2">
-        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="4.5.2">
+      <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="4.5.2">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="4.5.2">
+          <handleRepetitions>true</handleRepetitions>
+          <handleSubcomponents>true</handleSubcomponents>
+          <useStrictParser>false</useStrictParser>
+          <useStrictValidation>false</useStrictValidation>
           <stripNamespaces>false</stripNamespaces>
+          <segmentDelimiter>\r</segmentDelimiter>
+          <convertLineBreaks>true</convertLineBreaks>
         </serializationProperties>
-        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="4.5.2">
-          <splitType>Element_Name</splitType>
-          <elementName></elementName>
-          <level>1</level>
-          <query></query>
+        <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="4.5.2">
+          <useStrictParser>false</useStrictParser>
+          <useStrictValidation>false</useStrictValidation>
+          <segmentDelimiter>\r</segmentDelimiter>
+        </deserializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="4.5.2">
+          <splitType>MSH_Segment</splitType>
           <batchScript></batchScript>
         </batchProperties>
+        <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="4.5.2">
+          <segmentDelimiter>\r</segmentDelimiter>
+          <successfulACKCode>AA</successfulACKCode>
+          <successfulACKMessage></successfulACKMessage>
+          <errorACKCode>AE</errorACKCode>
+          <errorACKMessage>An Error Occurred Processing Message.</errorACKMessage>
+          <rejectedACKCode>AR</rejectedACKCode>
+          <rejectedACKMessage>Message Rejected.</rejectedACKMessage>
+          <msh15ACKAccept>false</msh15ACKAccept>
+          <dateFormat>yyyyMMddHHmmss.SSS</dateFormat>
+        </responseGenerationProperties>
+        <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="4.5.2">
+          <successfulACKCode>AA,CA</successfulACKCode>
+          <errorACKCode>AE,CE</errorACKCode>
+          <rejectedACKCode>AR,CR</rejectedACKCode>
+          <validateMessageControlId>true</validateMessageControlId>
+          <originalMessageControlId>Destination_Encoded</originalMessageControlId>
+          <originalIdMapVariable></originalIdMapVariable>
+        </responseValidationProperties>
       </inboundProperties>
       <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="4.5.2">
         <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="4.5.2">
@@ -126,7 +133,7 @@
     <filter version="4.5.2">
       <elements/>
     </filter>
-    <transportName>Database Reader</transportName>
+    <transportName>Channel Reader</transportName>
     <mode>SOURCE</mode>
     <enabled>true</enabled>
     <waitForPrevious>true</waitForPrevious>
@@ -134,8 +141,8 @@
   <destinationConnectors>
     <connector version="4.5.2">
       <metaDataId>1</metaDataId>
-      <name>Destination 1</name>
-      <properties class="com.mirth.connect.connectors.jdbc.DatabaseDispatcherProperties" version="4.5.2">
+      <name>MDM primary</name>
+      <properties class="com.mirth.connect.connectors.js.JavaScriptDispatcherProperties" version="4.5.2">
         <pluginProperties/>
         <destinationConnectorProperties version="4.5.2">
           <queueEnabled>false</queueEnabled>
@@ -157,12 +164,7 @@
           <queueBufferSize>1000</queueBufferSize>
           <reattachAttachments>true</reattachAttachments>
         </destinationConnectorProperties>
-        <driver>org.postgresql.Driver</driver>
-        <url>postgresql://demo_user:demo_pass@db.example.invalid:5432/demo_db</url>
-        <username>testdb</username>
-        <password>123</password>
-        <query>/* @import destinations/1-destination-1/query.sql */</query>
-        <useScript>false</useScript>
+        <script>/* @import destinations/1-mdm-primary/connector.js */</script>
       </properties>
       <transformer version="4.5.2">
         <elements/>
@@ -333,7 +335,7 @@
       <filter version="4.5.2">
         <elements/>
       </filter>
-      <transportName>Database Writer</transportName>
+      <transportName>JavaScript Writer</transportName>
       <mode>DESTINATION</mode>
       <enabled>true</enabled>
       <waitForPrevious>true</waitForPrevious>
@@ -361,18 +363,7 @@ return;</undeployScript>
     <removeAttachmentsOnCompletion>false</removeAttachmentsOnCompletion>
     <initialState>STARTED</initialState>
     <storeAttachments>true</storeAttachments>
-    <metaDataColumns>
-      <metaDataColumn>
-        <name>SOURCE</name>
-        <type>STRING</type>
-        <mappingName>mirth_source</mappingName>
-      </metaDataColumn>
-      <metaDataColumn>
-        <name>TYPE</name>
-        <type>STRING</type>
-        <mappingName>mirth_type</mappingName>
-      </metaDataColumn>
-    </metaDataColumns>
+    <metaDataColumns/>
     <attachmentProperties version="4.5.2">
       <type>None</type>
       <properties/>
@@ -386,19 +377,222 @@ return;</undeployScript>
   </properties>
   <exportData>
     <metadata>
-      <enabled>false</enabled>
+      <enabled>true</enabled>
       <lastModified>
-        <time>1789142480319</time>
+        <time>1789570819712</time>
         <timezone>Asia/Karachi</timezone>
       </lastModified>
       <pruningSettings>
         <archiveEnabled>true</archiveEnabled>
         <pruneErroredMessages>false</pruneErroredMessages>
       </pruningSettings>
-      <userId>1</userId>
     </metadata>
     <dependentIds/>
     <dependencyIds/>
-    <channelTags/>
+    <channelTags>
+      <channelTag>
+        <id>7a600000-0000-4000-8000-000000000002</id>
+        <name>production</name>
+        <channelIds>
+          <string>5eed0000-0000-4000-8000-00000000005e</string>
+          <string>64789fb3-47c9-4f9a-942a-20128eb415bb</string>
+          <string>5eed0000-0000-4000-8000-00000000005d</string>
+          <string>5eed0000-0000-4000-8000-00000000005c</string>
+          <string>5eed0000-0000-4000-8000-00000000005b</string>
+          <string>5eed0000-0000-4000-8000-00000000005f</string>
+          <string>5eed0000-0000-4000-8000-000000000004</string>
+          <string>5eed0000-0000-4000-8000-000000000003</string>
+          <string>5eed0000-0000-4000-8000-000000000002</string>
+          <string>5eed0000-0000-4000-8000-000000000001</string>
+          <string>5eed0000-0000-4000-8000-000000000008</string>
+          <string>5eed0000-0000-4000-8000-000000000007</string>
+          <string>5eed0000-0000-4000-8000-000000000006</string>
+          <string>5eed0000-0000-4000-8000-000000000005</string>
+          <string>5eed0000-0000-4000-8000-000000000009</string>
+          <string>5eed0000-0000-4000-8000-000000000011</string>
+          <string>5eed0000-0000-4000-8000-000000000010</string>
+          <string>5eed0000-0000-4000-8000-000000000015</string>
+          <string>5eed0000-0000-4000-8000-000000000014</string>
+          <string>5eed0000-0000-4000-8000-000000000013</string>
+          <string>5eed0000-0000-4000-8000-000000000012</string>
+          <string>5eed0000-0000-4000-8000-000000000018</string>
+          <string>5eed0000-0000-4000-8000-000000000017</string>
+          <string>5eed0000-0000-4000-8000-000000000016</string>
+          <string>5eed0000-0000-4000-8000-000000000022</string>
+          <string>5eed0000-0000-4000-8000-000000000021</string>
+          <string>5eed0000-0000-4000-8000-000000000020</string>
+          <string>5eed0000-0000-4000-8000-000000000026</string>
+          <string>5eed0000-0000-4000-8000-000000000025</string>
+          <string>5eed0000-0000-4000-8000-000000000024</string>
+          <string>5eed0000-0000-4000-8000-000000000023</string>
+          <string>5eed0000-0000-4000-8000-000000000029</string>
+          <string>5eed0000-0000-4000-8000-000000000028</string>
+          <string>5eed0000-0000-4000-8000-000000000027</string>
+          <string>5eed0000-0000-4000-8000-00000000000d</string>
+          <string>5eed0000-0000-4000-8000-00000000000c</string>
+          <string>5eed0000-0000-4000-8000-00000000000b</string>
+          <string>5eed0000-0000-4000-8000-00000000000a</string>
+          <string>2d151d08-8a92-4834-ae54-bbc428a4e7d0</string>
+          <string>5eed0000-0000-4000-8000-00000000000f</string>
+          <string>5eed0000-0000-4000-8000-00000000000e</string>
+          <string>5eed0000-0000-4000-8000-000000000033</string>
+          <string>5eed0000-0000-4000-8000-000000000032</string>
+          <string>5eed0000-0000-4000-8000-000000000031</string>
+          <string>5eed0000-0000-4000-8000-000000000030</string>
+          <string>5eed0000-0000-4000-8000-000000000037</string>
+          <string>5eed0000-0000-4000-8000-000000000036</string>
+          <string>5eed0000-0000-4000-8000-000000000035</string>
+          <string>5eed0000-0000-4000-8000-000000000034</string>
+          <string>5eed0000-0000-4000-8000-000000000039</string>
+          <string>5eed0000-0000-4000-8000-000000000038</string>
+          <string>5eed0000-0000-4000-8000-00000000001a</string>
+          <string>5eed0000-0000-4000-8000-00000000001e</string>
+          <string>5eed0000-0000-4000-8000-00000000001d</string>
+          <string>5eed0000-0000-4000-8000-00000000001c</string>
+          <string>5eed0000-0000-4000-8000-00000000001b</string>
+          <string>5eed0000-0000-4000-8000-00000000001f</string>
+          <string>5eed0000-0000-4000-8000-000000000044</string>
+          <string>5eed0000-0000-4000-8000-000000000043</string>
+          <string>5eed0000-0000-4000-8000-000000000042</string>
+          <string>5eed0000-0000-4000-8000-000000000041</string>
+          <string>5eed0000-0000-4000-8000-000000000048</string>
+          <string>5eed0000-0000-4000-8000-000000000047</string>
+          <string>5eed0000-0000-4000-8000-000000000046</string>
+          <string>5eed0000-0000-4000-8000-000000000045</string>
+          <string>5eed0000-0000-4000-8000-000000000049</string>
+          <string>5eed0000-0000-4000-8000-00000000002b</string>
+          <string>5eed0000-0000-4000-8000-00000000002a</string>
+          <string>5eed0000-0000-4000-8000-00000000002f</string>
+          <string>5eed0000-0000-4000-8000-00000000002e</string>
+          <string>5eed0000-0000-4000-8000-00000000002d</string>
+          <string>5eed0000-0000-4000-8000-00000000002c</string>
+          <string>5eed0000-0000-4000-8000-000000000040</string>
+          <string>5eed0000-0000-4000-8000-000000000055</string>
+          <string>5eed0000-0000-4000-8000-000000000054</string>
+          <string>5eed0000-0000-4000-8000-000000000053</string>
+          <string>5eed0000-0000-4000-8000-000000000052</string>
+          <string>5eed0000-0000-4000-8000-000000000059</string>
+          <string>5eed0000-0000-4000-8000-000000000058</string>
+          <string>5eed0000-0000-4000-8000-000000000057</string>
+          <string>5eed0000-0000-4000-8000-000000000056</string>
+          <string>5eed0000-0000-4000-8000-0000000fffff</string>
+          <string>5eed0000-0000-4000-8000-00000000003c</string>
+          <string>5eed0000-0000-4000-8000-00000000003b</string>
+          <string>5eed0000-0000-4000-8000-00000000003a</string>
+          <string>5eed0000-0000-4000-8000-00000000003f</string>
+          <string>5eed0000-0000-4000-8000-00000000003e</string>
+          <string>5eed0000-0000-4000-8000-00000000003d</string>
+          <string>5eed0000-0000-4000-8000-000000000051</string>
+          <string>5eed0000-0000-4000-8000-000000000050</string>
+          <string>5eed0000-0000-4000-8000-000000000064</string>
+          <string>5eed0000-0000-4000-8000-000000000063</string>
+          <string>5eed0000-0000-4000-8000-00000000005a</string>
+          <string>cfd6b84d-0be9-47e1-8228-b51d5c80671b</string>
+          <string>5eed0000-0000-4000-8000-00000000004d</string>
+          <string>5eed0000-0000-4000-8000-00000000004c</string>
+          <string>5eed0000-0000-4000-8000-00000000004b</string>
+          <string>5eed0000-0000-4000-8000-00000000004a</string>
+          <string>5eed0000-0000-4000-8000-00000000004f</string>
+          <string>5eed0000-0000-4000-8000-00000000004e</string>
+          <string>5eed0000-0000-4000-8000-000000000062</string>
+          <string>5eed0000-0000-4000-8000-000000000061</string>
+          <string>5eed0000-0000-4000-8000-000000000060</string>
+        </channelIds>
+        <backgroundColor>
+          <red>0</red>
+          <green>100</green>
+          <blue>200</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+      <channelTag>
+        <id>7a600000-0000-4000-8000-000000000003</id>
+        <name>hl7</name>
+        <channelIds>
+          <string>5eed0000-0000-4000-8000-000000000033</string>
+          <string>5eed0000-0000-4000-8000-000000000031</string>
+          <string>5eed0000-0000-4000-8000-000000000037</string>
+          <string>5eed0000-0000-4000-8000-000000000035</string>
+          <string>5eed0000-0000-4000-8000-000000000039</string>
+          <string>64789fb3-47c9-4f9a-942a-20128eb415bb</string>
+          <string>5eed0000-0000-4000-8000-00000000005d</string>
+          <string>5eed0000-0000-4000-8000-00000000005b</string>
+          <string>5eed0000-0000-4000-8000-00000000001d</string>
+          <string>5eed0000-0000-4000-8000-00000000005f</string>
+          <string>5eed0000-0000-4000-8000-00000000001b</string>
+          <string>5eed0000-0000-4000-8000-00000000001f</string>
+          <string>5eed0000-0000-4000-8000-000000000043</string>
+          <string>5eed0000-0000-4000-8000-000000000041</string>
+          <string>5eed0000-0000-4000-8000-000000000047</string>
+          <string>5eed0000-0000-4000-8000-000000000003</string>
+          <string>5eed0000-0000-4000-8000-000000000001</string>
+          <string>5eed0000-0000-4000-8000-000000000045</string>
+          <string>5eed0000-0000-4000-8000-000000000007</string>
+          <string>5eed0000-0000-4000-8000-000000000005</string>
+          <string>5eed0000-0000-4000-8000-000000000049</string>
+          <string>5eed0000-0000-4000-8000-000000000009</string>
+          <string>5eed0000-0000-4000-8000-00000000002b</string>
+          <string>5eed0000-0000-4000-8000-00000000002f</string>
+          <string>5eed0000-0000-4000-8000-00000000002d</string>
+          <string>5eed0000-0000-4000-8000-000000000055</string>
+          <string>5eed0000-0000-4000-8000-000000000011</string>
+          <string>5eed0000-0000-4000-8000-000000000053</string>
+          <string>5eed0000-0000-4000-8000-000000000015</string>
+          <string>5eed0000-0000-4000-8000-000000000059</string>
+          <string>5eed0000-0000-4000-8000-000000000013</string>
+          <string>5eed0000-0000-4000-8000-000000000057</string>
+          <string>5eed0000-0000-4000-8000-000000000017</string>
+          <string>5eed0000-0000-4000-8000-0000000fffff</string>
+          <string>5eed0000-0000-4000-8000-00000000003b</string>
+          <string>5eed0000-0000-4000-8000-00000000003f</string>
+          <string>5eed0000-0000-4000-8000-00000000003d</string>
+          <string>5eed0000-0000-4000-8000-000000000051</string>
+          <string>5eed0000-0000-4000-8000-000000000021</string>
+          <string>5eed0000-0000-4000-8000-000000000063</string>
+          <string>5eed0000-0000-4000-8000-000000000025</string>
+          <string>5eed0000-0000-4000-8000-000000000023</string>
+          <string>5eed0000-0000-4000-8000-000000000029</string>
+          <string>5eed0000-0000-4000-8000-000000000027</string>
+          <string>5eed0000-0000-4000-8000-00000000004d</string>
+          <string>5eed0000-0000-4000-8000-00000000004b</string>
+          <string>5eed0000-0000-4000-8000-00000000000d</string>
+          <string>5eed0000-0000-4000-8000-00000000000b</string>
+          <string>5eed0000-0000-4000-8000-00000000004f</string>
+          <string>2d151d08-8a92-4834-ae54-bbc428a4e7d0</string>
+          <string>5eed0000-0000-4000-8000-00000000000f</string>
+          <string>5eed0000-0000-4000-8000-000000000061</string>
+        </channelIds>
+        <backgroundColor>
+          <red>200</red>
+          <green>60</green>
+          <blue>60</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+      <channelTag>
+        <id>7a600000-0000-4000-8000-000000000008</id>
+        <name>critical</name>
+        <channelIds>
+          <string>5eed0000-0000-4000-8000-000000000022</string>
+          <string>64789fb3-47c9-4f9a-942a-20128eb415bb</string>
+          <string>5eed0000-0000-4000-8000-000000000043</string>
+          <string>5eed0000-0000-4000-8000-000000000064</string>
+          <string>5eed0000-0000-4000-8000-000000000059</string>
+          <string>5eed0000-0000-4000-8000-00000000000c</string>
+          <string>5eed0000-0000-4000-8000-00000000002d</string>
+          <string>5eed0000-0000-4000-8000-000000000001</string>
+          <string>5eed0000-0000-4000-8000-00000000004e</string>
+          <string>5eed0000-0000-4000-8000-000000000017</string>
+          <string>5eed0000-0000-4000-8000-000000000038</string>
+          <string>5eed0000-0000-4000-8000-0000000fffff</string>
+        </channelIds>
+        <backgroundColor>
+          <red>200</red>
+          <green>150</green>
+          <blue>40</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+    </channelTags>
   </exportData>
 </channel>
