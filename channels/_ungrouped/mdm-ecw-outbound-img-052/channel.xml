@@ -1,18 +1,14 @@
 <channel version="4.5.2">
-  <id>5eed0000-0000-4000-8000-000000000011</id>
+  <id>5eed0000-0000-4000-8000-000000000035</id>
   <nextMetaDataId>2</nextMetaDataId>
-  <name>MDM — eCW inbound (WEST-016)</name>
-  <description>MDM inbound interface for eCW at WEST. Seeded load-test channel 16.</description>
+  <name>MDM — eCW outbound (IMG-052)</name>
+  <description>MDM outbound interface for eCW at IMG. Seeded load-test channel 52.</description>
   <revision>1</revision>
   <sourceConnector version="4.5.2">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
-    <properties class="com.mirth.connect.connectors.http.HttpReceiverProperties" version="4.5.2">
+    <properties class="com.mirth.connect.connectors.vm.VmReceiverProperties" version="4.5.2">
       <pluginProperties/>
-      <listenerConnectorProperties version="4.5.2">
-        <host>0.0.0.0</host>
-        <port>30016</port>
-      </listenerConnectorProperties>
       <sourceConnectorProperties version="4.5.2">
         <responseVariable>None</responseVariable>
         <respondAfterProcessing>true</respondAfterProcessing>
@@ -27,21 +23,6 @@
         </resourceIds>
         <queueBufferSize>1000</queueBufferSize>
       </sourceConnectorProperties>
-      <xmlBody>false</xmlBody>
-      <parseMultipart>true</parseMultipart>
-      <includeMetadata>false</includeMetadata>
-      <binaryMimeTypes>application/.*(?&lt;!json|xml)$|image/.*|video/.*|audio/.*</binaryMimeTypes>
-      <binaryMimeTypesRegex>true</binaryMimeTypesRegex>
-      <responseContentType>text/plain</responseContentType>
-      <responseDataTypeBinary>false</responseDataTypeBinary>
-      <responseStatusCode></responseStatusCode>
-      <responseHeaders class="linked-hash-map"/>
-      <responseHeadersVariable></responseHeadersVariable>
-      <useResponseHeadersVariable>false</useResponseHeadersVariable>
-      <charset>UTF-8</charset>
-      <contextPath>feed/mdm/16</contextPath>
-      <timeout>30000</timeout>
-      <staticResources/>
     </properties>
     <transformer version="4.5.2">
       <elements>
@@ -152,7 +133,7 @@
     <filter version="4.5.2">
       <elements/>
     </filter>
-    <transportName>HTTP Listener</transportName>
+    <transportName>Channel Reader</transportName>
     <mode>SOURCE</mode>
     <enabled>true</enabled>
     <waitForPrevious>true</waitForPrevious>
@@ -410,6 +391,27 @@ return;</undeployScript>
     <dependencyIds/>
     <channelTags>
       <channelTag>
+        <id>7a600000-0000-4000-8000-000000000009</id>
+        <name>legacy</name>
+        <channelIds>
+          <string>5eed0000-0000-4000-8000-000000000042</string>
+          <string>5eed0000-0000-4000-8000-00000000005c</string>
+          <string>5eed0000-0000-4000-8000-00000000004f</string>
+          <string>5eed0000-0000-4000-8000-000000000035</string>
+          <string>5eed0000-0000-4000-8000-000000000001</string>
+          <string>5eed0000-0000-4000-8000-00000000001b</string>
+          <string>5eed0000-0000-4000-8000-000000000028</string>
+          <string>5eed0000-0000-4000-8000-00000000000e</string>
+          <string>5eed0000-0000-4000-8000-0000000fffff</string>
+        </channelIds>
+        <backgroundColor>
+          <red>140</red>
+          <green>90</green>
+          <blue>200</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+      <channelTag>
         <id>7a600000-0000-4000-8000-000000000002</id>
         <name>production</name>
         <channelIds>
@@ -449,8 +451,8 @@ return;</undeployScript>
           <string>5eed0000-0000-4000-8000-00000000000d</string>
           <string>5eed0000-0000-4000-8000-00000000000c</string>
           <string>5eed0000-0000-4000-8000-00000000000b</string>
-          <string>5eed0000-0000-4000-8000-00000000000a</string>
           <string>2d151d08-8a92-4834-ae54-bbc428a4e7d0</string>
+          <string>5eed0000-0000-4000-8000-00000000000a</string>
           <string>5eed0000-0000-4000-8000-00000000000f</string>
           <string>5eed0000-0000-4000-8000-00000000000e</string>
           <string>5eed0000-0000-4000-8000-000000000033</string>

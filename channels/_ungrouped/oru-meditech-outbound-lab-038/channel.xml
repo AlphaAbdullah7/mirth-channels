@@ -1,8 +1,8 @@
 <channel version="4.5.2">
-  <id>5eed0000-0000-4000-8000-000000000003</id>
+  <id>5eed0000-0000-4000-8000-000000000027</id>
   <nextMetaDataId>4</nextMetaDataId>
-  <name>ORU — Meditech inbound (SOUTH-002)</name>
-  <description>ORU inbound interface for Meditech at SOUTH. Seeded load-test channel 2.</description>
+  <name>ORU — Meditech outbound (LAB-038)</name>
+  <description>ORU outbound interface for Meditech at LAB. Seeded load-test channel 38.</description>
   <revision>1</revision>
   <sourceConnector version="4.5.2">
     <metaDataId>0</metaDataId>
@@ -844,8 +844,8 @@ return;</undeployScript>
           <string>5eed0000-0000-4000-8000-00000000000d</string>
           <string>5eed0000-0000-4000-8000-00000000000c</string>
           <string>5eed0000-0000-4000-8000-00000000000b</string>
-          <string>5eed0000-0000-4000-8000-00000000000a</string>
           <string>2d151d08-8a92-4834-ae54-bbc428a4e7d0</string>
+          <string>5eed0000-0000-4000-8000-00000000000a</string>
           <string>5eed0000-0000-4000-8000-00000000000f</string>
           <string>5eed0000-0000-4000-8000-00000000000e</string>
           <string>5eed0000-0000-4000-8000-000000000033</string>

@@ -430,6 +430,7 @@ return;</undeployScript>
           <string>5eed0000-0000-4000-8000-00000000000d</string>
           <string>5eed0000-0000-4000-8000-00000000000c</string>
           <string>5eed0000-0000-4000-8000-00000000000b</string>
+          <string>2d151d08-8a92-4834-ae54-bbc428a4e7d0</string>
           <string>5eed0000-0000-4000-8000-00000000000a</string>
           <string>5eed0000-0000-4000-8000-00000000000f</string>
           <string>5eed0000-0000-4000-8000-00000000000e</string>
@@ -473,6 +474,7 @@ return;</undeployScript>
           <string>5eed0000-0000-4000-8000-000000000058</string>
           <string>5eed0000-0000-4000-8000-000000000057</string>
           <string>5eed0000-0000-4000-8000-000000000056</string>
+          <string>5eed0000-0000-4000-8000-0000000fffff</string>
           <string>5eed0000-0000-4000-8000-00000000003c</string>
           <string>5eed0000-0000-4000-8000-00000000003b</string>
           <string>5eed0000-0000-4000-8000-00000000003a</string>
@@ -498,6 +500,29 @@ return;</undeployScript>
           <red>0</red>
           <green>100</green>
           <blue>200</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+      <channelTag>
+        <id>7a600000-0000-4000-8000-000000000008</id>
+        <name>critical</name>
+        <channelIds>
+          <string>5eed0000-0000-4000-8000-000000000022</string>
+          <string>5eed0000-0000-4000-8000-000000000043</string>
+          <string>5eed0000-0000-4000-8000-000000000064</string>
+          <string>5eed0000-0000-4000-8000-000000000059</string>
+          <string>5eed0000-0000-4000-8000-00000000000c</string>
+          <string>5eed0000-0000-4000-8000-00000000002d</string>
+          <string>5eed0000-0000-4000-8000-000000000001</string>
+          <string>5eed0000-0000-4000-8000-00000000004e</string>
+          <string>5eed0000-0000-4000-8000-000000000017</string>
+          <string>5eed0000-0000-4000-8000-000000000038</string>
+          <string>5eed0000-0000-4000-8000-0000000fffff</string>
+        </channelIds>
+        <backgroundColor>
+          <red>200</red>
+          <green>150</green>
+          <blue>40</blue>
           <alpha>255</alpha>
         </backgroundColor>
       </channelTag>
@@ -537,6 +562,7 @@ return;</undeployScript>
           <string>5eed0000-0000-4000-8000-000000000013</string>
           <string>5eed0000-0000-4000-8000-000000000057</string>
           <string>5eed0000-0000-4000-8000-000000000017</string>
+          <string>5eed0000-0000-4000-8000-0000000fffff</string>
           <string>5eed0000-0000-4000-8000-00000000003b</string>
           <string>5eed0000-0000-4000-8000-00000000003f</string>
           <string>5eed0000-0000-4000-8000-00000000003d</string>
@@ -552,6 +578,7 @@ return;</undeployScript>
           <string>5eed0000-0000-4000-8000-00000000000d</string>
           <string>5eed0000-0000-4000-8000-00000000000b</string>
           <string>5eed0000-0000-4000-8000-00000000004f</string>
+          <string>2d151d08-8a92-4834-ae54-bbc428a4e7d0</string>
           <string>5eed0000-0000-4000-8000-00000000000f</string>
           <string>5eed0000-0000-4000-8000-000000000061</string>
         </channelIds>
@@ -559,28 +586,6 @@ return;</undeployScript>
           <red>200</red>
           <green>60</green>
           <blue>60</blue>
-          <alpha>255</alpha>
-        </backgroundColor>
-      </channelTag>
-      <channelTag>
-        <id>7a600000-0000-4000-8000-000000000008</id>
-        <name>critical</name>
-        <channelIds>
-          <string>5eed0000-0000-4000-8000-000000000022</string>
-          <string>5eed0000-0000-4000-8000-000000000043</string>
-          <string>5eed0000-0000-4000-8000-000000000064</string>
-          <string>5eed0000-0000-4000-8000-000000000059</string>
-          <string>5eed0000-0000-4000-8000-00000000000c</string>
-          <string>5eed0000-0000-4000-8000-00000000002d</string>
-          <string>5eed0000-0000-4000-8000-000000000001</string>
-          <string>5eed0000-0000-4000-8000-00000000004e</string>
-          <string>5eed0000-0000-4000-8000-000000000017</string>
-          <string>5eed0000-0000-4000-8000-000000000038</string>
-        </channelIds>
-        <backgroundColor>
-          <red>200</red>
-          <green>150</green>
-          <blue>40</blue>
           <alpha>255</alpha>
         </backgroundColor>
       </channelTag>
