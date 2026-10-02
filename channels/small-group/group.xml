@@ -1,0 +1,17 @@
+<channelGroup version="4.5.2">
+  <id>14676a39-0734-432f-b572-5194d5323cef</id>
+  <name>small group</name>
+  <revision>2</revision>
+  <description></description>
+  <channels>
+    <channel version="4.5.2">
+      <id>175acae3-959a-469a-87d8-5cfd0a46a4bf</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-0000000fffff</id>
+    </channel>
+    <channel version="4.5.2">
+      <id>5eed0000-0000-4000-8000-000000000020</id>
+    </channel>
+  </channels>
+</channelGroup>

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "key": "another_testing_agains",
+      "comment": ""
+    },
+    {
+      "key": "new_key",
+      "comment": ""
+    },
+    {
+      "key": "new_key_1",
+      "comment": ""
+    },
+    {
+      "key": "new_one_database_writer_password1",
+      "comment": "New one - password"
+    },
+    {
+      "key": "new_testing",
+      "comment": ""
+    },
+    {
+      "key": "new_testing_1",
+      "comment": ""
+    },
+    {
+      "key": "one_more",
+      "comment": ""
+    },
+    {
+      "key": "one_more_one_more",
+      "comment": ""
+    },
+    {
+      "key": "test_channel_destination_1_password",
+      "comment": "Test Channel - password"
+    },
+    {
+      "key": "test_channel_password",
+      "comment": "Test Channel - password"
+    },
+    {
+      "key": "testing_channel_destination_1_password",
+      "comment": "Testing Channel - password"
+    },
+    {
+      "key": "testing_channel_password",
+      "comment": "Testing Channel - password"
+    },
+    {
+      "key": "testing_ley",
+      "comment": ""
+    },
+    {
+      "key": "testing_ley_1",
+      "comment": ""
+    }
+  ]
+}
